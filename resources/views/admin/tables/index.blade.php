@@ -18,9 +18,6 @@
                                 Name
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Guest 
-                            </th>
-                            <th scope="col" class="px-6 py-3">
                                 Status
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -29,6 +26,7 @@
                             <th scope="col" class="px-6 py-3">
                                 Action
                             </th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -37,9 +35,6 @@
                         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ $table->name }}
-                            </td>
-                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $table->ber }}
                             </td>
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ $table->status->name }}

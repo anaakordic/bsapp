@@ -61,10 +61,10 @@
                       <div class="text-sm text-red-400">{{ $message }}</div>
                     @enderror
               </div>
-                <div class="sm:col-span-6 pt-5">
+                <div class="sm:col-span-6 ">
                   <label for="table" class="block text-sm font-medium text-gray-700">Table</label>
                   <div class="mt-1">
-                    <select id="table_id" name="table_id" class="form-multiselect block w-full mt-1">
+                    <select id="table_id" name="table_id" class="block appearance-none bg-white border  rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                       @foreach ($tables as $table )
                             <option value="{{ $table->id }}">{{ $table->name }}</option>
                           @endforeach                       

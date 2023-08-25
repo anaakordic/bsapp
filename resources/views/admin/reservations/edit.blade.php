@@ -54,7 +54,8 @@
                 <div class="sm:col-span-6">
                   <label for="res_date" class="block text-sm font-medium text-gray-700"> Reservation Date </label>
                   <div class="mt-1">
-                    <input type="datetime-local" id="res_date" name="res_date" value="{{ $reservation->res_date->format('Y-m-d\TH:i:s') }}" class="block w-full appearance-none bg-white border rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-400 @enderror" />
+                    <input type="datetime-local" id="res_date" name="res_date" value="{{ \Carbon\Carbon::parse($reservation->res_date)->format('Y-m-d\TH:i:s') }}" class="block w-full appearance-none bg-white border rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('res_date') border-red-400 @enderror" />
+
                   </div>
                 </div>
                 @error('res_date')
@@ -64,11 +65,9 @@
                 <div class="sm:col-span-6 pt-5">
                   <label for="table" class="block text-sm font-medium text-gray-700">Table</label>
                   <div class="mt-1">
-                    <select id="table_id" name="table_id" class="form-multiselect block w-full mt-1">
+                    <select id="table_id" name="table_id" class="block appearance-none bg-white border  rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                       @foreach ($tables as $table )
-                      <option value="{{ $table->id }}" @selected($table->id == $reservation->table_id)>
-                        {{ $table->name }}
-                    </option>
+                            <option value="{{ $table->id }}">{{ $table->name }}</option>
                           @endforeach                       
                     </select>
                   </div>
