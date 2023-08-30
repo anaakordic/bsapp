@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Menu;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
@@ -12,8 +11,8 @@ class Category extends Model
 
     protected $fillable = ['name', 'image', 'description'];
 
-    public function menus()
+    public function services()
     {
-        return $this->belongsToMany(Menu::class, 'category_menu');
+        return $this->belongsToMany(Service::class, 'category_service');
     }
 }

@@ -4,14 +4,17 @@ namespace App\Http\Requests;
 
 use App\Rules\DateBetween;
 use App\Rules\TimeBetween;
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ReservationStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
+     *
+     * @return bool
      */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
@@ -19,9 +22,9 @@ class ReservationStoreRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array
      */
-    public function rules(): array
+    public function rules()
     {
         return [
             'first_name' => ['required'],
@@ -29,7 +32,7 @@ class ReservationStoreRequest extends FormRequest
             'email' => ['required', 'email'],
             'res_date' => ['required', 'date', new DateBetween, new TimeBetween],
             'tel_number' => ['required'],
-            'table_id' => ['required'],
+            'service_id' => ['required'],
         ];
     }
 }

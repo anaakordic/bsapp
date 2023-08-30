@@ -3,23 +3,45 @@
 namespace App\Rules;
 
 use Carbon\Carbon;
-use Closure;
-use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Contracts\Validation\Rule;
 
-class DateBetween implements ValidationRule
+class DateBetween implements Rule
 {
     /**
-     * Run the validation rule.
+     * Create a new rule instance.
      *
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @return void
      */
-    public function validate(string $attribute, mixed $value, Closure $fail): void
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Determine if the validation rule passes.
+     *
+     * @param  string  $attribute
+     * @param  mixed  $value
+     * @return bool
+     */
+    public function passes($attribute, $value)
     {
         $pickupDate = Carbon::parse($value);
-        $lastDate = Carbon::now()->addWeek();
+        $lastDate = Carbon::now()->addMonths(6);
 
-        if (!($pickupDate >= now() && $pickupDate <= $lastDate)) {
-            $fail('Please choose the date between a week from now.');
-        }
+        return $value >= now() && $value <= $lastDate && $pickupDate->dayOfWeek !== Carbon::SUNDAY;
+        
+
+        
+    }
+
+    /**
+     * Get the validation error message.
+     *
+     * @return string
+     */
+    public function message()
+    {
+        return 'Please choose a date that is not a Sunday and is within the next half year.';;
     }
 }

@@ -10,8 +10,6 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        //$menus = Menu::all();
-
         $categories = Category::all();
         return view('categories.index', compact('categories'));
     }

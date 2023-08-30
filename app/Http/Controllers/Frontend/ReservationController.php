@@ -2,68 +2,70 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Enums\TableStatus;
-use App\Http\Controllers\Controller;
-use App\Models\Reservation;
-use App\Models\Table;
+use Carbon\Carbon;
 use App\Rules\DateBetween;
 use App\Rules\TimeBetween;
-use Carbon\Carbon;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Service;
 
 class ReservationController extends Controller
 {
-    public function stepOne(Request $request)
+    public function resForm(Request $request)
     {
+        $services = Service::all();
         $reservation = $request->session()->get('reservation');
+if ($reservation && $reservation->res_date) {
+    $res_table_ids = Reservation::orderBy('res_date')->get()->filter(function ($value) use ($reservation) {
+        return $value->res_date->format('Y-m-d') == $reservation->res_date->format('Y-m-d');
+    })->pluck('service_id');
+}
+
         $min_date = Carbon::today();
-        $max_date = Carbon::now()->addWeek();
-        return view('reservations.step-one', compact('reservation', 'min_date', 'max_date'));
+        $max_date = Carbon::today()->addMonths(6);
+        return view('reservations.res-form', compact('reservation', 'services', 'min_date', 'max_date'));
     }
 
-    public function storeStepOne(Request $request)
-    {
-        $validated = $request->validate([
-            'first_name' => ['required'],
-            'last_name' => ['required'],
-            'email' => ['required', 'email'],
-            'res_date' => ['required', 'date', new DateBetween, new TimeBetween],
-            'tel_number' => ['required'],
-        ]);
+    public function storeresForm(Request $request)
+{
+    $validated = $request->validate([
+        'first_name' => ['required'],
+        'last_name' => ['required'],
+        'email' => ['required', 'email'],
+        'res_date' => ['required', 'date', new DateBetween, new TimeBetween],
+        'tel_number' => ['required'],
+        'service_id' => ['required'],
+    ]);
 
-        if (empty($request->session()->get('reservation'))) {
-            $reservation = new Reservation();
-            $reservation->fill($validated);
-            $request->session()->put('reservation', $reservation);
-        } else {
-            $reservation = $request->session()->get('reservation');
-            $reservation->fill($validated);
-            $request->session()->put('reservation', $reservation);
-        }
+    if (empty($request->session()->get('reservation'))) {
 
-        return to_route('reservations.step.two');
-    }
-    public function stepTwo(Request $request)
-    {
-        $reservation = $request->session()->get('reservation');
-        $res_table_ids = Reservation::orderBy('res_date')->get()->filter(function ($value) use ($reservation) {
-            return $value->res_date->format('Y-m-d') == $reservation->res_date->format('Y-m-d');
-        })->pluck('table_id');
-        $tables = Table::where('status', TableStatus::Avaliablle)
-            ->whereNotIn('id', $res_table_ids)->get();
-        return view('reservations.step-two', compact('reservation', 'tables'));
-    }
+        $reservation = new Reservation();
 
-    public function storeStepTwo(Request $request)
-    {
-        $validated = $request->validate([
-            'table_id' => ['required']
-        ]);
-        $reservation = $request->session()->get('reservation');
         $reservation->fill($validated);
-        $reservation->save();
-        $request->session()->forget('reservation');
 
-        //return to_route('thankyou');
+        $request->session()->put('reservation', $reservation);
+
+    } else {
+
+        $reservation = $request->session()->get('reservation');
+
+        $reservation->fill($validated);
+
+        $request->session()->put('reservation', $reservation);
+
     }
+
+    $reservation = new Reservation();
+    $reservation->fill($validated);
+    $reservation->save();
+
+
+
+    $request->session()->forget('reservation');
+
+    return redirect()->route('thankyou'); 
+}
+
+
 }

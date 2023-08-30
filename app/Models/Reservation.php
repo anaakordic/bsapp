@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Table;
-use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Reservation extends Model
 {
@@ -15,7 +16,7 @@ class Reservation extends Model
         'last_name',
         'tel_number',
         'email',
-        'table_id',
+        'service_id',
         'res_date',
     ];
 
@@ -23,7 +24,10 @@ class Reservation extends Model
         'res_date'
     ];
 
-    public function table() {
+
+
+    public function table()
+    {
         return $this->belongsTo(Table::class);
     }
 }
