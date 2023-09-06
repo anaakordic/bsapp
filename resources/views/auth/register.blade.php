@@ -50,8 +50,4 @@
             </form>
         </div>
     </div>
-<<<<<<< HEAD
 </x-guest-layout>
-=======
-</x-guest-layout>
->>>>>>> 138eb05afa6639a9f91ca9c762b9516dd89875a0
