@@ -46,9 +46,7 @@
                 <a class="text-xl font-bold text  black-400"
                     href="{{ route('about.index') }} " target="_blank">About us</a>
                 <a class="text-xl font-bold text  black-400"
-                    href="{{ route('categories.index') }}">Categories</a>
-                <a class="text-xl font-bold text  black-400"
-                    href="{{ route('services.index') }}">Our Services</a>
+                    href="{{ route('categories.index') }}">Our Services</a>
                 <a class="text-xl font-bold text  black-400"
                     href="{{ route('reservations.res.form') }}">Book an Appointment</a>
                 

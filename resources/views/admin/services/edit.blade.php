@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="m-2 p-2 bg-slate-100 rounded">
+            <div class="m-2 p-2 ">
                 <div class="space-y-8 divide-y divide-gray-200 w-1/2 mt-10">
                     <form method="POST" action="{{ route('admin.services.update', $service->id) }}"
                         enctype="multipart/form-data">

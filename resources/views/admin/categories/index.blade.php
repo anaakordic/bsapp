@@ -7,76 +7,79 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex justify-end m-2 p-2">
+            <div class="flex m-2 p-2">
                 <a href="{{ route('admin.categories.create') }}"
                     class="px-4 py-2 bg-gray-500 hover:bg-gray-700 text-white">New Category</a>
             </div>
             <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
-                        <div class="overflow-hidden shadow-md sm:rounded-lg">
-                            <table class="min-w-full">
-                                <thead class="bg-gray-50 dark:bg-gray-700">
-                                    <tr>
-                                        <th scope="col"
-                                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                            Name
-                                        </th>
-                                        <th scope="col"
-                                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                            Image
-                                        </th>
-                                        <th scope="col"
-                                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                            Description
-                                        </th>
-                                        <th scope="col" class="relative py-3 px-6">
-                                            <span class="sr-only">Edit</span>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($categories as $category)
-                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                            <td
-                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {{ $category->name }}
-                                            </td>
-                                            <td
-                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                <img src="{{ Storage::url($category->image) }}"
-                                                    class="w-16 h-16 rounded">
-                                            </td>
-                                            <td
-                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {{ $category->description }}
-                                            </td>
-                                            <td
-                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                <div class="flex space-x-2">
-                                                    <a href="{{ route('admin.categories.edit', $category->id) }}"
-                                                        class="px-4 py-2 hover:bg-green-700 rounded-lg text-white">&#9998;</a>
-                                                    <form
-                                                        class="px-4 py-2 hover:bg-red-700 rounded-lg text-white"
-                                                        method="POST"
-                                                        action="{{ route('admin.categories.destroy', $category->id) }}"
-                                                        onsubmit="return confirm('Are you sure?');">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit">&#10060;</button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                  <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                    <div class="overflow-hidden">
+                      <table class="min-w-full text-left text-sm font-light">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="relative py-3 px-6">
+                                    <span class="sr-only">Edit</span>
+                                </th>
+                                <th scope="col"
+                                    class="py-6 px-4 ">
+                                    Name
+                                </th>
+                                <th scope="col"
+                                    class="py-6 px-4">
+                                    Image
+                                </th>
+                                <th scope="col"
+                                    class="py-6 px-4">
+                                    Description
+                                </th>
+                               
+                            </tr>
+                        </thead>
 
-                                </tbody>
-                            </table>
-                        </div>
+                        <tbody>
+                            @foreach ($categories as $category)
+                                <tr class="border-b dark:border-neutral-500">
+                                    <td
+                                        class="whitespace-nowrap px-6 py-4">
+                                        <div class="flex space-x-2">
+                                            <a href="{{ route('admin.categories.edit', $category->id) }}"
+                                                class="px-4 py-2 hover:bg-green-700 rounded-lg text-white">&#9998;</a>
+                                            <form
+                                                class="px-4 py-2 hover:bg-red-700 rounded-lg text-white"
+                                                method="POST"
+                                                action="{{ route('admin.categories.destroy', $category->id) }}"
+                                                onsubmit="return confirm('Are you sure?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit">&#10060;</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                    <td
+                                    class="whitespace-nowrap px-6 py-4 font-medium">
+                                        {{ $category->name }}
+                                    </td>
+                                    <td
+                                        class="whitespace-nowrap px-6 py-4">
+                                        <img src="{{ Storage::url($category->image) }}"
+                                            class="w-16 h-16 rounded">
+                                    </td>
+                                    <td
+                                        class="whitespace-nowrap px-6 py-4">
+                                        {{ $category->description }}
+                                    </td>
+                                    
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+
+                      </table>
                     </div>
+                  </div>
                 </div>
-            </div>
-
+              </div>
         </div>
     </div>
 </x-admin-layout>
