@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="flex justify-center items-center h-screen">
         <div class="w-full max-w-md text-center">
-            <br> <br> <br>
+           
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="text-center">
@@ -50,4 +50,8 @@
             </form>
         </div>
     </div>
+<<<<<<< HEAD
 </x-guest-layout>
+=======
+</x-guest-layout>
+>>>>>>> 138eb05afa6639a9f91ca9c762b9516dd89875a0

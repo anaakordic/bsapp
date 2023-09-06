@@ -38,6 +38,7 @@
                         </label>
                     </div>
 
+<<<<<<< HEAD
                     <x-primary-button>
                         {{ __('Log in') }}
                     </x-primary-button>
@@ -54,10 +55,27 @@
                                 </div>
                             </div>
                             
+=======
+                    <!-- Forgot Password and Login Button -->
+                    <div class="mb-4">
+                        <div class="inline-flex items-center"">
+                            @if (Route::has('password.request'))
+                                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                                    {{ __('Forgot your password?') }}
+                                </a>
+                            @endif
+                            <x-primary-button>
+                                {{ __('Log in') }}
+                            </x-primary-button>
+>>>>>>> 138eb05afa6639a9f91ca9c762b9516dd89875a0
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+<<<<<<< HEAD
 </x-guest-layout>
+=======
+</x-guest-layout>
+>>>>>>> 138eb05afa6639a9f91ca9c762b9516dd89875a0
