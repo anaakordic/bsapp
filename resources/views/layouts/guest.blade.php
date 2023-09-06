@@ -66,6 +66,9 @@
                    
                 </ul>
             </div>
+
+            
+
             <div class="flex justify-center mt-4 lg:mt-0">
                 <a class="ml-3">
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -76,9 +79,13 @@
                 </a>
                 <a>
                     <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        class="w-6 h-6 text-blue-600" viewBox="0 0 24 24">
+                        class="w-6 h-6 text-blue-600" viewBox="0 0 24 24" >
                         <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
                     </svg>
+                </a>
+                    <p class="text-gray-500" > &nbsp;|&nbsp;&nbsp; </p>
+                <a class="underline text-sm text-gray-500 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+                    {{ __('Log in as an administrator') }}
                 </a>
                
                 
