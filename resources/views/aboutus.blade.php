@@ -92,7 +92,7 @@
     <div class="button-container">
         <a href="https://github.com/anaakordic" class="button" target="_blank">GitHub profil (Ana)</a>
         <a href="https://github.com/IvaPetrovicc" class="button" target="_blank">GitHub profil (Iva)</a><br>
-        <a href="link_ka_viziji" class="button">Vizija</a>
+        <a href="https://drive.google.com/file/d/11C3SbHdiEuP5MnXibNYjccBbwA_hp3ta/view?usp=sharing" class="button">Vizija</a>
     </div>
 </div>
 </body>

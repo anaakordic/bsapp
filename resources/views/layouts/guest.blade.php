@@ -51,7 +51,7 @@
                     href="{{ route('services.index') }}">Our Services</a>
                 <a class="text-xl font-bold text  black-400"
                     href="{{ route('reservations.res.form') }}">Book an Appointment</a>
-
+                
             </div>
         </nav>
     </div>
