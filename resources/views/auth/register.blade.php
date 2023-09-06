@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="flex justify-center items-center h-screen">
         <div class="w-full max-w-md text-center">
-           
+           <br> <br> <br>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="text-center">
